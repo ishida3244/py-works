@@ -1,0 +1,16 @@
+pydantic
+requests
+
+# For development.
+black
+isort
+pylint
+pylint-pytest
+rope
+
+# For testing.
+pytest
+
+# For operations.
+pipdeptree
+yq
