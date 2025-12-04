@@ -1,0 +1,146 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.117.0/containers/docker-existing-docker-compose
+// If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
+{
+  "name": "py-works",
+  // Update the 'dockerComposeFile' list if you have more compose files or use different names.
+  // The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
+  "dockerComposeFile": [
+    "./compose.yaml"
+  ],
+  "onCreateCommand": [
+    "bash",
+    "-c",
+    "pip install --no-warn-script-location --upgrade pip && pip install --no-cache-dir --no-warn-script-location --upgrade -r .devcontainer/requirements.txt"
+  ],
+  // The 'service' property is the name of the service for the container that VS Code should
+  // use. Update this value and .devcontainer/docker-compose.yml to the real service name.
+  "service": "ide",
+  // The optional 'workspaceFolder' property is the path VS Code should open by default when
+  // connected. This is typically a file mount in .devcontainer/docker-compose.yml
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+        "editorconfig.editorconfig",
+        "MS-CEINTL.vscode-language-pack-ja",
+        "oderwat.indent-rainbow",
+        // Git
+        "donjayamanne.githistory",
+        "mhutchie.git-graph",
+        // Markdown
+        "livepdm.auto-markdown-toc-ax1",
+        "yzhang.markdown-all-in-one",
+        "shd101wyy.markdown-preview-enhanced",
+        "davidanson.vscode-markdownlint",
+        // Python
+        "ms-python.python",
+        "ms-python.pylint",
+        "ms-python.isort",
+        "ms-python.black-formatter",
+        "njpwerner.autodocstring",
+        "njqdev.vscode-python-typehint",
+        "ryanluker.vscode-coverage-gutters",
+        // Shell script
+        "mads-hartmann.bash-ide-vscode",
+        "foxundermoon.shell-format",
+        // TOML
+        "tamasfe.even-better-toml",
+        // Others
+        "amazonwebservices.amazon-q-vscode",
+        "ms-azuretools.vscode-containers"
+      ],
+      // Set *default* container specific settings.json values on container create.
+      "settings": {
+        "editor.autoIndent": "full",
+        "editor.formatOnSave": true,
+        "editor.renderControlCharacters": true,
+        "editor.renderWhitespace": "all",
+        "extensions.verifySignature": false,
+        "files.autoGuessEncoding": true,
+        "[markdown]": {
+          "editor.codeActionsOnSave": {
+            "source.fixAll.markdownlint": "always"
+          },
+          "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+        },
+        "markdown.extension.tableFormatter.enabled": true,
+        "markdown.extension.toc.levels": "2..4",
+        "markdown.updateLinksOnFileMove.enabled": "prompt",
+        "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
+        "markdown-preview-enhanced.enableExtendedTableSyntax": true,
+        "markdown-preview-enhanced.enableLinkify": false,
+        "markdown-preview-enhanced.enableScriptExecution": true,
+        "markdown-preview-enhanced.plantumlServer": "http://www.plantuml.com/plantuml",
+        "markdown-preview-enhanced.puppeteerArgs": [
+          "--no-sandbox",
+          "--disable-setuid-sandbox"
+        ],
+        "markdown-preview-enhanced.puppeteerWaitForTimeout": 3000,
+        "markdown-toc.depthFrom": 2,
+        "markdown-toc.depthTo": 4,
+        "markdown-toc.detectAndAutoSetSection": true,
+        "markdown-toc.updateOnSave": true,
+        "markdown-toc.withLinks": true,
+        "markdownlint.config": {
+          "no-inline-html": false
+        },
+        "[python]": {
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "always"
+          },
+          "editor.defaultFormatter": "ms-python.black-formatter"
+        },
+        "python.analysis.typeCheckingMode": "basic",
+        "python.defaultInterpreterPath": "/usr/local/bin/python3",
+        "python.languageServer": "Pylance",
+        "python.linting.pylintUseMinimalCheckers": false,
+        "python.terminal.useEnvFile": true,
+        "python.testing.nosetestsEnabled": false,
+        "python.testing.pytestEnabled": true,
+        "python.testing.unittestEnabled": false,
+        "[shellscript]": {
+          "editor.defaultFormatter": "foxundermoon.shell-format"
+        },
+        "shellformat.effectLanguages": [
+          "shellscript",
+          "dotenv",
+          "hosts",
+          "ignore",
+          "gitignore",
+          "properties"
+        ],
+        "shellformat.path": "/usr/local/bin/shfmt",
+        "shellformat.useEditorConfig": true,
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash",
+            "args": [
+              "-l"
+            ]
+          }
+        },
+        "yaml.format.enable": true,
+        "yaml.trace.server": "verbose"
+      }
+    }
+  },
+  "features": {
+    "ghcr.io/lukewiwa/features/shellcheck:0": {},
+    "ghcr.io/devcontainers-extra/features/shfmt:1": {},
+    "ghcr.io/guiyomh/features/vim:0": {}
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // Uncomment the next line if you want start specific services in your Docker Compose config.
+  // "runServices": [],
+  // Uncomment the next line if you want to keep your containers running after VS Code shuts down.
+  // "shutdownAction": "none",
+  // Uncomment the next line to run commands after the container is created - for example installing git.
+  // "postCreateCommand": "apt-get update && apt-get install -y git",
+  // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "vscode"
+}

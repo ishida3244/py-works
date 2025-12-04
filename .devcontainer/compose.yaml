@@ -1,0 +1,24 @@
+---
+name: py-works
+services:
+  ide:
+    build:
+      context: .
+      args:
+        OS_APP_GID: ${LOCAL_UID:-1000}
+        OS_APP_UID: ${LOCAL_GID:-1000}
+    image: py-works
+    environment:
+      TZ: Asia/Tokyo
+    init: true
+    logging:
+      driver: json-file
+      options:
+        max-size: 3m
+        max-file: 1
+    network_mode: host
+    tty: true
+    user: vscode
+    volumes:
+      - ~/.ssh:/home/vscode/.ssh
+      - ..:/workspace:cached
